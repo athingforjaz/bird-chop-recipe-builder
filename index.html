@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+
+    <title>Bird Chop Recipe Builder</title>
+    <style>
+
+        .recipe {
+            font-family: 'inconsolata', monospace;
+            width: 500px;
+            background-color: gainsboro;
+            border: 5px solid gray;
+            border-radius: 10px;
+            margin: 10px;
+            padding-left: 20px;
+            padding-bottom: 20px;
+        }
+
+        .item {
+            width: minmax(100px, auto);
+            background-color: lavender;
+            border: 1px solid gray;
+            margin: 1px;
+            box-shadow: 1px 1px 1px gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .items {
+            display: grid;
+            grid-template-columns: 150px 150px 150px;
+            grid-gap: 5px;
+            padding-top: 10px;
+        }
+
+       .container {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           grid-gap: 20px;
+       }
+
+    </style>
+    <script>
+        showBelow = (id) => {
+            document.getElementById('recipe-holder').innerHTML += `<div>${document.getElementById(id).innerHTML}</div>`
+        }
+
+        writeHTML = () => {
+            var greensList = new Map([
+                ["bokchoy", "Bok Choy"],
+                ["broccoli", "Broccoli"],
+                ["brusselssprouts", "Brussels Sprouts"],
+                ["cauliflower", "Cauliflower"],
+                ["collardgreens", "Collard Greens"],
+                ["dandeliongreens", "Dandelion Greens"],
+                ["endive", "Endive"],
+                ["fennel", "Fennel"],
+                ["kale", "Kale"],
+                ["mustardgreens", "Mustard Greens"],
+                ["okra", "Okra"],
+                ["radishtops", "Radish Tops"],
+                ["redleaflettuces", "Red Leaf Lettuces"],
+                ["rocket", "Rocket (Arugula)"],
+                ["romainelettuce", "Romaine Lettuce"],
+                ["swisschard", "Swiss Chard"],
+                ["turnipgreens", "Turnip Greens"],
+                ["watercress", "Watercress"]
+            ])
+
+            var vegetablesList = new Map([
+                ["bellpeppers", "Bell Peppers"],
+                ["carrots", "Carrots"],
+                ["corn", "Corn"],
+                ["chilipeppers", "Chili Pepper"],
+                ["hotpeppers", "Hot Peppers"],
+                ["parsnip", "Parsnip"],
+                ["pumpkin", "Pumpkin"],
+                ["radish", "Radish"],
+                ["radicchio", "Radicchio"],
+                ["redbeets", "Red Beets"],
+                ["redcabbage", "Red Cabbage"],
+                ["rutabagas", "Rutabagas"],
+                ["squash", "Squash"],
+                ["sweetpotato", "Sweet Potato"],
+                ["yellowbeets", "Yellow Beets"],
+                ["yellowsquare", "Yellow Squash"],
+                ["yuccaroot", "Yucca Root"],
+                ["zucchini", "Zucchini"]
+            ])
+
+            var fruitsList = new Map([
+                ["apple", "Apple"],
+                ["apricot", "Apricot"],
+                ["banana", "Banana"],
+                ["blackberries", "Blackberries"],
+                ["blueberries", "Blueberries"],
+                ["carambola", "Carambola (Star Fruit)"],
+                ["cherry", "Cherry"],
+                ["coconut", "Coconut"],
+                ["cranberry", "Cranberry"],
+                ["dragonfruit", "Dragon Fruit"],
+                ["grape", "Grape"],
+                ["guava", "Guava"],
+                ["kiwi", "Kiwi"],
+                ["mango", "Mango"],
+                ["melon", "Melon"],
+                ["papaya", "Papaya"],
+                ["peach", "Peach"],
+                ["plum", "Plum"],
+                ["pear", "Pear"],
+                ["strawberry", "Strawberry"]
+            ])
+
+            var herbsList = new Map([
+                ["basil", "Basil"],
+                ["beepollen", "Bee Pollen"],
+                ["brownrice", "Brown Rice"],
+                ["celeryroot", "Celery Root"],
+                ["ceyloncinnamon", "Ceylon Cinnamon"],
+                ["chiaseeds", "Chia Seeds"],
+                ["coriander", "Coriander (Cilantro)"],
+                ["dill", "Dill"],
+                ["gingerroot", "Ginger Root"],
+                ["mint", "Mint"],
+                ["oregano", "Oregano"],
+                ["parsley", "Parsley"],
+                ["quinoa", "Quinoa"],
+                ["rosemary", "Rosemary"],
+                ["thyme", "Thyme"],
+                ["turmeric", "Turmeric"],
+                ["wheatgerm", "Wheat Germ"],
+                ["wholegrainpasta", "Whole Grain Pasta"]
+            ])
+
+            greensList.forEach((value, key) =>  {
+                document.getElementById("greens").innerHTML += `<div class="item greens" id="${value}" onClick="showBelow(id)">${value}</div>`
+            })
+
+            vegetablesList.forEach((value, key) =>  {
+                document.getElementById("vegetables").innerHTML += `<div class="item vegetables" id="${value}" onClick="showBelow(id)">${value}</div>`
+            })
+
+            fruitsList.forEach((value, key) =>  {
+                document.getElementById("fruits").innerHTML += `<div class="item fruits" id="${value}" onClick="showBelow(id)">${value}</div>`
+            })
+
+            herbsList.forEach((value, key) =>  {
+                document.getElementById("herbs").innerHTML += `<div class="item herbs" id="${value}" onClick="showBelow(id)">${value}</div>`
+            })
+        }
+
+        printDiv = () =>  {
+        var printContents = document.getElementById('recipe-holder').innerHTML;
+        var w = window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+        }
+    </script>
+</head>
+<body onload="writeHTML()">
+<div class="container">
+    <div class="instructions">
+    <h1>Bird Chop Recipe Builder</h1>
+    <h2>Instructions</h2>
+    <ol>
+        <li>Click items below to add them to your bird chop recipe.</li>
+        <li>Make sure to always wash all ingredients thoroughly.</li>
+        <li>Chop each vegetable & fruit coarsely, then place in food processor for a fine & consistent chop.</li>
+        <li>Mix well and add in the "toppers" from the Herbs, Spices, & Whole Grains column.</li>
+        <li>Store in refrigerator for 7-10 days or store in freezer for 2-3 months.</li>
+    </ol>
+    </div>
+
+    <div class="recipe" id="recipe">
+        <div id="recipe-holder">
+            <h3>My Recipe</h3>
+        </div>
+        <input type="button" onclick="printDiv()" value="Print your recipe" />
+    </div>
+
+    <div class="greens">
+    <h3>Dark Green Leafy Vegetables</h3>
+    <span>Pick three to six.</span>
+    <div class="items greens" id="greens"></div>
+    </div>
+
+    <div class="vegetables">
+    <h3>Red, Orange, & Yellow Vegetables</h3>
+    <span>Pick three or four.</span>
+    <div class="items vegetables" id="vegetables"></div>
+    </div>
+    
+    <div class="fruits">
+    <h3>Fruit</h3>
+    <span>Pick one or two.</span>
+    <div class="items fruits" id="fruits"></div>
+    </div>
+    
+    <div class="herbs">
+    <h3>Herbs, Spices, & Whole Grains</h3>
+    <span>Pick one or two.</span>
+    <div class="items herbs" id="herbs"></div>
+    </div>
+
+        
+
+</div> <!---for container class-->
+
+    <h2>Pro Tips</h2>
+    <ul>
+        <li>For picky birds and to help with diet conversion, make sure all vegetables are chopped finely at the same consistency. To offer variety, chop each vegetable a little differently.</li>
+        <li>When freezing, chop everything at the same consistency and avoid extra watery/juicy fruits and vegetables.</li>
+        <li>Freeze in portions that your bird will use in about a week. Ice cube trays work well for freezing in smaller portions.</li>
+        <li>When thawing, drain in colander or on paper towels and mix in some Old Fashioned Whole Grain Oats to help absorb the extra moisture. Draining does make it less nutritious.</li>
+    </ul>
+    <p>Information courtesy of the Parrot Education, Adoption, & Rehoming League at <a href="https://www.pearlparrots.com">www.PearlParrots.com</a>.</p>
+
+</body>
+</html>
